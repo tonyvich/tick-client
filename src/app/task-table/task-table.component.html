@@ -1,0 +1,43 @@
+<data-table
+  [items]="tasks"
+  [itemCount]="taskCount"
+  (reload)="reloadTasks($event)"
+
+  [pagination]="false"
+  [indexColumn]="false"
+  [selectColumn]="true"
+  [multiSelect]="true"
+  >
+  <data-table-column
+    property="name"
+    header="Name"
+    sortable="true">
+  </data-table-column>
+  <data-table-column
+    property="description"
+    header="Description"
+    sortable="true">
+  </data-table-column>
+  <data-table-column
+    property="ends_at"
+    header="Date end"
+    sortable="true">
+  </data-table-column>
+  <data-table-column
+    property="completed"
+    header="Status"
+    sortable="true">
+  </data-table-column>
+  <data-table-column
+    header="Actions">
+    <ng-template #dataTableHeader let-item="item">
+      <i>Actions</i>
+    </ng-template>
+    <ng-template #dataTableCell let-item="item">
+      <button (click)="toggleTaskStatus( item )" class="btn btn-sm btn-default">
+        <i *ngIf="item.completed == 0" class="fa fa-check text-success"></i>
+        <i *ngIf="item.completed == 1" class="fa fa-check text-danger"></i>
+      </button>
+    </ng-template>
+  </data-table-column>
+</data-table>
